@@ -8,14 +8,25 @@ class ProductPage(BasePage):
         button_basket.click()
 
     def should_be_product_added(self):
-        self.should_be_same_name()
-        self.should_be_same_price()
+        product_name = self.extraction_product_name()
+        product_price = self.extraction_product_price()
 
-    def should_be_same_name(self):
+        self.should_be_same_name(product_name)
+        self.should_be_same_price(product_price)
+
+    def extraction_product_name(self):
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        return product_name
+
+    def extraction_product_price(self):
+        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        return product_price
+
+    def should_be_same_name(self, product_name):
         message_text = self.browser.find_element(*ProductPageLocators.ALERT_MESSAGE).text
-        assert "The shellcoder's handbook" in message_text
+        assert product_name in message_text, "Product name does not match"
 
-    def should_be_same_price(self):
+    def should_be_same_price(self, product_price):
         price_text = self.browser.find_element(*ProductPageLocators.PRICE_MESSAGE).text
-        assert "£9.99" == price_text
+        assert product_price == price_text, "Product price does not match"
 
