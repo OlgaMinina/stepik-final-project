@@ -18,3 +18,9 @@ class ProductPageLocators():
     PRODUCT_NAME = (By.CSS_SELECTOR, ".col-sm-6.product_main h1")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".col-sm-6.product_main .price_color")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages div:nth-child(1)")
+    BASKET_BUTTON = (By.CSS_SELECTOR, "a[class='btn btn-default']")
+
+
+class BasketPageLocators():
+    BASKET_ITEM = (By.CSS_SELECTOR, ".basket-items")
+    MESSAGE_EMPTY_CART = (By.CSS_SELECTOR, "p:nth-child(1)")
